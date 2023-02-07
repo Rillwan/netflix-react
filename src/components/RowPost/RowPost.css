@@ -1,0 +1,26 @@
+/* Row-post Post */
+.row-post {
+    height: 270px;
+    color: rgb(130, 130, 131);
+}
+
+.row-post h2 {
+    margin: 10px 0px 0px 20px;
+    font-size: 15px;
+}
+
+.row-post .posters {
+    display: flex;
+    padding: 20px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.row-post .posters::-webkit-scrollbar {
+    display: none;
+}
+
+.row-post .poster {
+    max-height: 200px;
+    margin-right: 20px;
+}
