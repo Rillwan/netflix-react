@@ -99,10 +99,10 @@ function NavBar() {
                         <a className="nav-link service" onClick={ActiveBtn} href="#movies">Movies</a>
                     </li>
                     <li className="nav-item me-3">
-                        <a className="nav-link service" onClick={ActiveBtn} href="#series">Series</a>
+                        <a className="nav-link service" onClick={ActiveBtn} href="#music">Music</a>
                     </li>
                     <li className="nav-item me-3">
-                        <a className="nav-link service" onClick={ActiveBtn} href="#mylist">My List</a>
+                        <a className="nav-link service" onClick={ActiveBtn} href="#animation">Animation</a>
                     </li>
                 </ul>
                 {/* <!-- Left links --> */}

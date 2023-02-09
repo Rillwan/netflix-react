@@ -1,19 +1,20 @@
 /* Row-post Post */
 .row-post {
-    height: 270px;
     color: rgb(130, 130, 131);
 }
 
 .row-post h2 {
-    margin: 10px 0px 0px 20px;
-    font-size: 15px;
+    margin: 20px 0px 0px 20px;
+    font-size: 17px;
+    height: 2rem;
 }
 
 .row-post .posters {
     display: flex;
-    padding: 20px;
+    padding: 10px;
     overflow-x: scroll;
     overflow-y: hidden;
+    margin-left: 10px;
 }
 
 .row-post .posters::-webkit-scrollbar {
@@ -21,6 +22,11 @@
 }
 
 .row-post .poster {
-    max-height: 200px;
+    max-height: 150px;
+    margin-right: 20px;
+}
+
+.row-post .small-poster{
+    max-height: 100px;
     margin-right: 20px;
 }

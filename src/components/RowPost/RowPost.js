@@ -1,37 +1,43 @@
-import React from 'react';
-import './RowPost.css';
+import axios from "../../axios";
+import React, { useEffect, useState } from "react";
+import "./RowPost.css";
+import { imageUrl } from "../../constants/constants";
+import YouTube from "react-youtube";
 
-function RowPost() {
+function RowPost(props) {
+  const [movie, setMovie] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(props.url)
+      .then((response) => {
+        console.log(response.data);
+        setMovie(response.data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [props]);
+
   return (
-    <div>
+    <div className="ROWPOST">
       {/* <!--Row Post--> */}
-    <div className="row row-post" style={{margin:'0'}}>
-        <h2>POPULAR ON NETFLIX</h2>
+      <div className="row row-post" style={{ margin: "0" }} id={props.tag}>
+        <h2>{props.title}</h2>
         <div className="posters">
-            <img src="https://i.etsystatic.com/13367669/r/il/8adffe/1506815473/il_794xN.1506815473_lb94.jpg"
-                alt="loading" className="poster" />
-            <img src="https://i.etsystatic.com/13367669/r/il/8adffe/1506815473/il_794xN.1506815473_lb94.jpg"
-                alt="loading" className="poster" />
-            <img src="https://i.etsystatic.com/13367669/r/il/8adffe/1506815473/il_794xN.1506815473_lb94.jpg"
-                alt="loading" className="poster" />
-            <img src="https://i.etsystatic.com/13367669/r/il/8adffe/1506815473/il_794xN.1506815473_lb94.jpg"
-                alt="loading" className="poster" />
-            <img src="https://i.etsystatic.com/13367669/r/il/8adffe/1506815473/il_794xN.1506815473_lb94.jpg"
-                alt="loading" className="poster" />
-            <img src="https://i.etsystatic.com/13367669/r/il/8adffe/1506815473/il_794xN.1506815473_lb94.jpg"
-                alt="loading" className="poster" />
-            <img src="https://i.etsystatic.com/13367669/r/il/8adffe/1506815473/il_794xN.1506815473_lb94.jpg"
-                alt="loading" className="poster" />
-            <img src="https://i.etsystatic.com/13367669/r/il/8adffe/1506815473/il_794xN.1506815473_lb94.jpg"
-                alt="loading" className="poster" />
-            <img src="https://i.etsystatic.com/13367669/r/il/8adffe/1506815473/il_794xN.1506815473_lb94.jpg"
-                alt="loading" className="poster" />
-            <img src="https://i.etsystatic.com/13367669/r/il/8adffe/1506815473/il_794xN.1506815473_lb94.jpg"
-                alt="loading" className="poster" />
+          {movie.map((obj) => (
+            <img
+              src={`${imageUrl + obj.backdrop_path}`}
+              alt="loading"
+              className={props.isSmall ? "small-poster" : "poster"}
+              key={obj.id}
+            />
+          ))}
         </div>
+        {/* <YouTube /> */}
+      </div>
     </div>
-    </div>
-  )
+  );
 }
 
-export default RowPost
+export default RowPost;
