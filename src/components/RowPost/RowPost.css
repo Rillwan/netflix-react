@@ -24,9 +24,17 @@
 .row-post .poster {
     max-height: 150px;
     margin-right: 20px;
+    cursor: pointer;
 }
 
 .row-post .small-poster{
     max-height: 100px;
     margin-right: 20px;
+    cursor: pointer;
+}
+.row-post .poster:hover{
+    transform: scale(1.1);
+}
+.row-post .small-poster:hover{
+    transform: scale(1.1);
 }
