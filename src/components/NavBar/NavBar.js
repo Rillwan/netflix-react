@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './NavBar.css';
 import Logo from '../img/netflix.jpg'
 import Avatar from '../img/user.jpg'
-import Avatar1 from '../img/user1.jpg'
 import Avatar2 from '../img/user2.png'
-import Avatar3 from '../img/user3.jpg'
+import axios from 'axios';
+import { imageUrl } from '../../constants/constants';
+import MyList from '../../pages/myList/MyList';
+// import { useNavigate } from 'react-router-dom';
 
+function NavBar(props) {
 
-function NavBar() {
-
+    const [movie, setMovie] = useState([]);
+    // const navigate = useNavigate();
 
     //---------Navbar
     //(services)_right links
@@ -56,28 +59,48 @@ function NavBar() {
          };
     }
 
+    //get TMDB data collections upcoming Notification Bell
+    useEffect(() => {
+        axios
+        .get(props.url)
+        .then((response) => {
+            // console.log(response.data.results);
+            setMovie(response.data.results);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }, [props]);
+
+    // console.log(movie.map((obj)=>obj.title))
+
+    // const myList = (e)=>{
+    //     e.preventDefault()
+    //     navigate('/mylist')
+    // }
+
   return (
     <div>
-          {/* <!-- Navbar --> */}
+          {/*  Navbar  */}
     <nav className="navbar navbar-expand-lg fixed-top navbar-dark ">
-        {/* <!-- Container wrapper --> */}
+        {/*  Container wrapper  */}
         <div className="container-fluid">
-            {/* <!-- Navbar brand --> */}
+            {/*  Navbar brand  */}
             <a className="navbar-brand ms-3" href="/">
                 <img src={Logo} height="30" alt="logo" loading="lazy" />
             </a>
 
-            {/* <!-- Toggle button --> */}
+            {/*  Toggle button  */}
             <button className="navbar-toggler " type="button" data-mdb-toggle="collapse"
                 data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <i className="fas fa-bars"></i>
             </button>
 
-            {/* <!-- Collapsible wrapper --> */}
+            {/*  Collapsible wrapper  */}
             <div className="collapse navbar-collapse " id="navbarSupportedContent">
 
-                {/* <!-- Search form --> */}
+                {/*  Search form  */}
                 <form className="d-flex input-group w-auto bg-dark rounded-pill mb-2 mb-lg-0 ms-5">
                     <span className="input-group-text text-white border-0 rounded" id="search-addon">
                         <i className="fas fa-search"></i>
@@ -87,29 +110,32 @@ function NavBar() {
                          />
                 </form>
 
-                {/* <!-- Left links --> */}
+                {/*  Left links  */}
                 <ul className="navbar-nav ms-auto ">
                     <li className="nav-item me-3 ">
-                        <a className=" nav-link service" onClick={ActiveBtn} aria-current="page" href="#home">Home</a>
+                        <a className=" nav-link service " onClick={ActiveBtn} aria-current="page" href="#home">Home</a>
                     </li>
                     <li className="nav-item me-3">
-                        <a className="nav-link service" onClick={ActiveBtn} href="#tvshows">TV Shows</a>
+                        <a className="nav-link service" onClick={ActiveBtn} href="#movies">TV Shows</a>
                     </li>
                     <li className="nav-item me-3">
-                        <a className="nav-link service" onClick={ActiveBtn} href="#movies">Movies</a>
+                        <a className="nav-link service" onClick={ActiveBtn} href="#popular">Movies</a>
                     </li>
                     <li className="nav-item me-3">
                         <a className="nav-link service" onClick={ActiveBtn} href="#music">Music</a>
                     </li>
+
+                    {/* MyList */}
                     <li className="nav-item me-3">
-                        <a className="nav-link service" onClick={ActiveBtn} href="#animation">Animation</a>
+                        <a className="nav-link service" onClick={ActiveBtn}  role="button" data-mdb-toggle="collapse" href="#collapseExample"  aria-expanded="false"
+                        aria-controls="collapseExample" ><span>My List</span></a>
                     </li>
                 </ul>
-                {/* <!-- Left links --> */}
 
+                {/*  Left links  */}
 
                 <ul className="navbar-nav mb-2 mb-lg-0">
-                    {/* <!-- Navbar dropdown --> */}
+                    {/*  Navbar dropdown Notification Bell */}
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle hidden-arrow " href="/"  role="button" onClick={toggleBell}>
                             <i className="fas fa-bell " id="Bell-active"></i>
@@ -117,118 +143,20 @@ function NavBar() {
 
                         <ul id="BellBox" className="bell-notify  p-1 text-light"
                             style={{backgroundColor:'black', boxShadow:'0px 0px 10px 2px rgba(255, 255, 255, 0.152)'}}>
-                            <li>
-                                <div className="row">
-                                    <div className="col-md">
-                                        <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="movie"
-                                            height='63' width='auto' />
+                            { movie.map((obj)=>(
+                                <li key={obj.id}>
+                                    <div className="row">
+                                        <div className="col-md">
+                                            <img src={`${imageUrl + obj.backdrop_path}`} alt="movie" 
+                                                height='63' width='auto' />
+                                        </div>
+                                        <div className="col-md">
+                                            <p className="mb-0" style={{fontSize:"smaller",color:"red"}}>New</p>
+                                            <p className="h6 mb-1"> {obj.title ? obj.title : ""} </p>
+                                        </div>
                                     </div>
-                                    <div className="col-md">
-                                        <p className="h6 mb-0">New</p>
-                                        <p className="h6 mb-1">Movie title</p>
-                                        <span className="small">Today</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <hr className="dropdown-divider" />
-                            </li>
-                            <li>
-                                <div className="row">
-                                    <div className="col-md">
-                                        <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="movie"
-                                            height='63' width='auto' />
-                                    </div>
-                                    <div className="col-md">
-                                        <p className="h6 mb-0">New</p>
-                                        <p className="h6 mb-1">Movie title</p>
-                                        <span className="small">Today</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <hr className="dropdown-divider" />
-                            </li>
-                            <li>
-                                <div className="row">
-                                    <div className="col-md">
-                                        <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="movie"
-                                            height='63' width='auto' />
-                                    </div>
-                                    <div className="col-md">
-                                        <p className="h6 mb-0">New</p>
-                                        <p className="h6 mb-1">Movie title</p>
-                                        <span className="small">Today</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <hr className="dropdown-divider" />
-                            </li>
-                            <li>
-                                <div className="row">
-                                    <div className="col-md">
-                                        <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="movie"
-                                            height='63' width='auto' />
-                                    </div>
-                                    <div className="col-md">
-                                        <p className="h6 mb-0">New</p>
-                                        <p className="h6 mb-1">Movie title</p>
-                                        <span className="small">Today</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <hr className="dropdown-divider" />
-                            </li>
-                            <li>
-                                <div className="row">
-                                    <div className="col-md">
-                                        <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="movie"
-                                            height='63' width='auto' />
-                                    </div>
-                                    <div className="col-md">
-                                        <p className="h6 mb-0">New</p>
-                                        <p className="h6 mb-1">Movie title</p>
-                                        <span className="small">Today</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <hr className="dropdown-divider" />
-                            </li>
-                            <li>
-                                <div className="row">
-                                    <div className="col-md">
-                                        <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="movie"
-                                            height='63' width='auto' />
-                                    </div>
-                                    <div className="col-md">
-                                        <p className="h6 mb-0">New</p>
-                                        <p className="h6 mb-1">Movie title</p>
-                                        <span className="small">Today</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <hr className="dropdown-divider" />
-                            </li>
-                            <li>
-                                <div className="row">
-                                    <div className="col-md">
-                                        <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="movie"
-                                            height='63' width='auto' />
-                                    </div>
-                                    <div className="col-md">
-                                        <p className="h6 mb-0">New</p>
-                                        <p className="h6 mb-1">Movie title</p>
-                                        <span className="small">Today</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <hr className="dropdown-divider" />
-                            </li>
+                                </li>
+                            ))}
                         </ul>
 
                     </li>
@@ -238,29 +166,20 @@ function NavBar() {
                             >
                             <img src={Avatar} className="rounded-circle img-fluid" height='25' width='25' alt='avatar' />
                         </a>
-                        {/* <!-- Dropdown menu --> */}
+                        {/*  Dropdown menu  */}
                         <ul id="UserBox" className="User-notify p-1 text-light " style={{display:'none'}}>
                             <li className="my-2 d-flex align-items-center">
-                                <img src={Avatar1}
-                                    className="rounded-circle img-fluid me-1" height='25' width='25' alt='avatar' />
-                                    <span> User 1</span>
-                            </li>
-                            <li className="my-2 d-flex align-items-center">
                                 <img src={Avatar2}
-                                    className="rounded-circle img-fluid me-1" height='25' width='25' alt='avatar' /><span> User
-                                    2</span>
-                            </li>
-                            <li className="my-2 d-flex align-items-center">
-                                <img src={Avatar3}
-                                    className="rounded-circle img-fluid me-1" height='25' width='25' alt='avatar' /><span> User
-                                    3</span>
+                                    className="rounded-circle img-fluid me-1" height='25' width='25' alt='avatar' /><span> welcome
+                                    </span>
                             </li>
                             <li><a className="dropdown-item " href="/">Manage Profile</a></li>
+                            
+                            <li><a className="dropdown-item" href="/">Your Account</a></li>
+                            <li><a className="dropdown-item" href="/">Help</a></li>
                             <li className="disabled">
                                 <hr className="dropdown-divider" />
                             </li>
-                            <li><a className="dropdown-item" href="/">Your Account</a></li>
-                            <li><a className="dropdown-item" href="/">Help</a></li>
                             <li><a className="dropdown-item" href="/">Log Out</a></li>
                         </ul>
                     </li>
@@ -269,6 +188,11 @@ function NavBar() {
             </div>
         </div>
     </nav>
+
+    {/* MyList Page */}
+    <div className="collapse mt-3" id="collapseExample">
+        <MyList />     
+    </div>
 
     </div>
   )

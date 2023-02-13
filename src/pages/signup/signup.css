@@ -1,0 +1,109 @@
+/* SignUp PAGE STYLE */
+
+.signup-page {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../img/login-bg.webp");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #b3b3b3;
+    background-blend-mode: multiply;
+}
+
+.signup-page .logo {
+    position: absolute;
+    align-self: flex-start;
+    left: 10px;
+}
+
+.signup-page .logo img {
+    height: 60px;
+    width: 170px;
+    margin-top: 15px;
+}
+
+.signup-page .signup {
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 4px;
+    width: 33rem;
+    height: 30rem;
+    padding: 60px 68px 40px;
+}
+
+.signup-page .signup__title {
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.signup-page .signup__group {
+    position: relative;
+    z-index: 10;
+    display: flex;
+}
+
+.signup-page .signup__group__input {
+    width: 100%;
+    position: relative;
+    z-index: 100;
+    background: #333;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: none;
+    opacity: 1;
+    font-size: 1rem;
+    color: #fff;
+    line-height: 50px;
+    padding: 12px 18px 0;
+}
+.signup-page .signup__group__input::placeholder{
+    color: #b3b3b3;
+    font-size: 0.9rem;
+}
+
+.signup-page .signup__sign-in {
+    margin: 24px 0 12px;
+    padding: 16px;
+    color: #fff;
+    background: #e50914;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.signup-page .signup__secondary-cta {
+    position: relative;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+}
+
+.signup-page .signup__secondary-cta__text {
+    opacity: 1;
+    font-size: 0.9rem;
+    color: #b3b3b3;
+    text-decoration: none;
+}
+
+.signup-page .signup__secondary-cta__text--need-help {
+    transition: all 0.3s ease-in;
+}
+
+.signup-page .signup__secondary-cta__text--need-help:hover {
+    text-decoration: underline;
+}
+
+::placeholder {
+    font-size: 0.7rem;
+}

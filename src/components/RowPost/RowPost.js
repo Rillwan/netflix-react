@@ -31,12 +31,13 @@ function RowPost(props) {
     },
   };
 
+  //click poster 
   const handleMovie = (id)=>{
-    console.log(id);
+    // console.log(id);
     axios.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`).then(response=>{
       // console.log(response.data);
       if(response.data.results.length !==0){
-        setUrlId(response.data.results[0])
+        setUrlId(response.data.results[0]);
       }else{
         console.log('Array Empty');
       }
@@ -48,7 +49,7 @@ function RowPost(props) {
   return (
     <div className="ROWPOST">
       {/* <!--Row Post--> */}
-      <div className="row row-post" style={{ margin: "0" }} id={props.tag}>
+      <div className="row row-post" style={{ margin: "0" }} id={props.tag ? props.tag : null}>
         <h2>{props.title}</h2>
         <div className="posters">
           {movie.map((obj) => (
