@@ -7,7 +7,7 @@ import SignUp from "./pages/signup/SignUp";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/netflix-react",
     element: <Login />,
   },
   {
