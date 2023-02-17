@@ -1,17 +1,59 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import './NavBar.css';
 import Logo from '../img/netflix.jpg'
 import Avatar from '../img/user.jpg'
 import Avatar2 from '../img/user2.png'
-import axios from 'axios';
-import { imageUrl } from '../../constants/constants';
+import { API_KEY, imageUrl } from '../../constants/constants';
 import MyList from '../../pages/myList/MyList';
-// import { useNavigate } from 'react-router-dom';
+import Search from '../../pages/search/Search';
+import axios from "../../axios";
+
 
 function NavBar(props) {
 
     const [movie, setMovie] = useState([]);
-    // const navigate = useNavigate();
+
+    const [query, setQuery] = useState('');
+    const [results, setResults] = useState([]);
+
+
+    //searching
+    const handleSearch = (e)=>{
+        e.preventDefault();
+        // console.log(query);
+        axios.get(`/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1`).then((response)=>{
+            // console.log(response.data);
+            if(response.data.results.length !== 0 ){
+                // console.log("array");
+                setResults(response.data.results);
+            }else{
+                console.log("Movie not mention")
+            }
+            // const data = response.data;
+            // setResults([...results,data]);
+        })
+    }
+
+    //search-box open and close
+    const search = ()=>{
+        var s = document.getElementById("search");
+        if (s.style.display === "none") {
+            s.style.display = "block";
+        } else {
+            s.style.display = "none";
+        }
+    }
+
+    // async function searchMovies() {
+    //     const response = await axios.get('https://api.themoviedb.org/3/search/movie', {
+    //       params: {
+    //         api_key: 'YOUR_API_KEY',
+    //         query: query
+    //       }
+    //     });
+      
+    //     setResults(response.data.results);
+    //   }
 
     //---------Navbar
     //(services)_right links
@@ -28,6 +70,8 @@ function NavBar(props) {
             });
         }
     }
+
+    
 
     // user DropDown Bar
     const toggleUser = (e)=>{
@@ -101,11 +145,11 @@ function NavBar(props) {
             <div className="collapse navbar-collapse " id="navbarSupportedContent">
 
                 {/*  Search form  */}
-                <form className="d-flex input-group w-auto bg-dark rounded-pill mb-2 mb-lg-0 ms-5">
+                <form className="d-flex input-group w-auto bg-dark rounded-pill mb-2 mb-lg-0 ms-5" onSubmit={handleSearch} >
                     <span className="input-group-text text-white border-0 rounded" id="search-addon">
                         <i className="fas fa-search"></i>
                     </span>
-                    <input type="search" className="form-control rounded-pill bg-dark text-light" placeholder="Search"
+                    <input onClick={search} value={query} onChange={e => setQuery(e.target.value)} type="search" className="form-control rounded-pill bg-dark text-light" placeholder="Search"
                         aria-label="Search" aria-describedby="search-addon" style={{ border:'none', boxShadow:'none', width: '50%'}}
                          />
                 </form>
@@ -194,8 +238,13 @@ function NavBar(props) {
         <MyList />     
     </div>
 
+    {/* search page */}
+    <div className='search-box' id='search'  style={{display:'none'}}>
+        <Search value={results} />
+    </div>
+
     </div>
   )
 }
 
-export default NavBar
+export default NavBar;

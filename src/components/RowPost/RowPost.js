@@ -1,12 +1,17 @@
 import axios from "../../axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./RowPost.css";
 import { API_KEY, imageUrl } from "../../constants/constants";
 import YouTube from "react-youtube";
+import { ListContext } from "../../Context/Context";
+
 
 function RowPost(props) {
   const [movie, setMovie] = useState([]);
   const [urlId, setUrlId] = useState('');
+
+  const {list,setList} = useContext(ListContext);
+
 
   //get TMDB data collections
   useEffect(() => {
@@ -32,12 +37,21 @@ function RowPost(props) {
   };
 
   //click poster 
-  const handleMovie = (id)=>{
-    // console.log(id);
-    axios.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`).then(response=>{
+  const handleMovie = (obj)=>{
+    // console.log(obj);
+
+    //Adding MyList (str to array convert)
+    const newList = obj
+    setList([...list,newList]);
+
+    axios.get(`/movie/${obj.id}/videos?api_key=${API_KEY}&language=en-US`).then(response=>{
       // console.log(response.data);
-      if(response.data.results.length !==0){
+
+      if(response.data.results.length !== 0 ){
+        // console.log(response.data.results[0]);
+
         setUrlId(response.data.results[0]);
+
       }else{
         console.log('Array Empty');
       }
@@ -58,7 +72,7 @@ function RowPost(props) {
               alt="loading"
               className={props.isSmall ? "small-poster" : "poster"}
               key={obj.id}
-              onClick={()=>handleMovie(obj.id)}
+              onClick={()=>handleMovie(obj)}
             />
           ))}
         </div>

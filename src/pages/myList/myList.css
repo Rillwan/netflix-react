@@ -33,7 +33,7 @@
     height: 10vh;
 }
 .mylist .contents ul li h3{
-    margin-right: 30%;
+    width: 35%;
     margin-left: 5%;
     margin-bottom: 0;
 }

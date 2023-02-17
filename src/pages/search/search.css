@@ -1,0 +1,13 @@
+
+.search{
+    text-align: center;
+    margin-top: 8.5vh;
+}
+.search .posters{
+    width: 90%;
+    margin: auto;
+}
+.search .posters .poster{
+    display: inline-block;
+    margin: 10px;
+}
