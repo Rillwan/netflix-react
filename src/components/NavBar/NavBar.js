@@ -29,8 +29,6 @@ function NavBar(props) {
             }else{
                 console.log("Movie not mention")
             }
-            // const data = response.data;
-            // setResults([...results,data]);
         })
     }
 
@@ -43,17 +41,6 @@ function NavBar(props) {
             s.style.display = "none";
         }
     }
-
-    // async function searchMovies() {
-    //     const response = await axios.get('https://api.themoviedb.org/3/search/movie', {
-    //       params: {
-    //         api_key: 'YOUR_API_KEY',
-    //         query: query
-    //       }
-    //     });
-      
-    //     setResults(response.data.results);
-    //   }
 
     //---------Navbar
     //(services)_right links
@@ -115,13 +102,6 @@ function NavBar(props) {
             console.log(err);
         });
     }, [props]);
-
-    // console.log(movie.map((obj)=>obj.title))
-
-    // const myList = (e)=>{
-    //     e.preventDefault()
-    //     navigate('/mylist')
-    // }
 
   return (
     <div>
