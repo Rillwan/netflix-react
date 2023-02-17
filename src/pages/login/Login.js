@@ -9,6 +9,9 @@ function Login() {
     const signup = ()=>{
         navigate('/signup')
     }
+    const homepage = ()=>{
+        navigate('/home')
+    }
 
   return (
     <div className='Login-page'>
@@ -73,9 +76,9 @@ function Login() {
             <h5>Watch anywhere. Cancel anytime.</h5>
             <h4>Ready to watch? Enter your email to create or restart your membership.</h4>
             <div className="login-body" >
-                <form action="/home" method="get">
+                <form action="home" method="get">
                     <input type="email" placeholder="Email Address" />
-                    <button type="submit">Get Started {">"}</button>
+                    <button type="submit" onClick={homepage}>Get Started {">"}</button>
                 </form>
             </div>
         </div>
