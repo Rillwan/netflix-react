@@ -2,25 +2,20 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
-import MyList from "./pages/myList/MyList";
 import SignUp from "./pages/signup/SignUp";
 
 const router = createBrowserRouter([
   {
-    path: "/login",
+    path: "netflix-react",
     element: <Login />,
   },
   {
-    path: "signup",
+    path: "netflix-react/signup",
     element: <SignUp />,
   },
   {
-    path: "home",
+    path: "netflix-react/home",
     element: <Home />,
-  },
-  {
-    path: "mylist",
-    element: <MyList />,
   },
   {
     path: "*",

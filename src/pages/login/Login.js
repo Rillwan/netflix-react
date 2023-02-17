@@ -7,10 +7,10 @@ function Login() {
     const navigate = useNavigate();
 
     const signup = ()=>{
-        navigate('/signup')
+        navigate('/netflix-react/signup');
     }
     const homepage = ()=>{
-        navigate('/home')
+        navigate('/netflix-react/home');
     }
 
   return (
@@ -53,8 +53,8 @@ function Login() {
                                 English
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a className="dropdown-item" href="/">Malayalam</a></li>
-                                <li><a className="dropdown-item" href="/">Hindi</a></li>
+                                <li><a className="dropdown-item" href="/netflix-react">Malayalam</a></li>
+                                <li><a className="dropdown-item" href="/netflix-react">Hindi</a></li>
                             </ul>
                         </div>
                         <button type="button" className="login-btn btn me-3 text-light" onClick={signup}>

@@ -7,7 +7,7 @@ function SignUp() {
     const navigate = useNavigate();
 
     const homepage = ()=>{
-        navigate('/home')
+        navigate('/netflix-react/home')
     }
 
   return (
