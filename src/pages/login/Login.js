@@ -7,10 +7,10 @@ function Login() {
     const navigate = useNavigate();
 
     const signup = ()=>{
-        navigate('/netflix-react/signup');
+        navigate('/signup');
     }
     const homepage = ()=>{
-        navigate('/netflix-react/home');
+        navigate('/home');
     }
 
   return (
@@ -53,8 +53,8 @@ function Login() {
                                 English
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a className="dropdown-item" href="/netflix-react">Malayalam</a></li>
-                                <li><a className="dropdown-item" href="/netflix-react">Hindi</a></li>
+                                <li><a className="dropdown-item" href="/">Malayalam</a></li>
+                                <li><a className="dropdown-item" href="/">Hindi</a></li>
                             </ul>
                         </div>
                         <button type="button" className="login-btn btn me-3 text-light" onClick={signup}>
@@ -76,7 +76,7 @@ function Login() {
             <h5>Watch anywhere. Cancel anytime.</h5>
             <h4>Ready to watch? Enter your email to create or restart your membership.</h4>
             <div className="login-body" >
-                <form action="home" method="get">
+                <form action="home" >
                     <input type="email" placeholder="Email Address" />
                     <button type="submit" onClick={homepage}>Get Started {">"}</button>
                 </form>

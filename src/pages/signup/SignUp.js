@@ -7,13 +7,13 @@ function SignUp() {
     const navigate = useNavigate();
 
     const homepage = ()=>{
-        navigate('/netflix-react/home')
+        navigate('/home')
     }
 
   return (
     <div>
         <div className="signup-page">
-            <a className="logo" href="/" target="_blank"><img src={SignBG} alt="logo"/></a>
+            <a className="logo" href="/netflix-react" target="_blank"><img src={SignBG} alt="logo"/></a>
             <form className="signup" action="home">
                 <h1 className="signup__title">Sign In</h1>
                 <div className="signup__group">

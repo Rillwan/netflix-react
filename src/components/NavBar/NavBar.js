@@ -110,7 +110,7 @@ function NavBar(props) {
         {/*  Container wrapper  */}
         <div className="container-fluid">
             {/*  Navbar brand  */}
-            <a className="navbar-brand ms-3" href="/">
+            <a className="navbar-brand ms-3" href="/netflix-react">
                 <img src={Logo} height="30" alt="logo" loading="lazy" />
             </a>
 
@@ -197,10 +197,10 @@ function NavBar(props) {
                                     className="rounded-circle img-fluid me-1" height='25' width='25' alt='avatar' /><span> welcome
                                     </span>
                             </li>
-                            <li><a className="dropdown-item " href="/netflix-react">Manage Profile</a></li>
+                            <li><a className="dropdown-item " href="/">Manage Profile</a></li>
                             
-                            <li><a className="dropdown-item" href="/netflix-react">Your Account</a></li>
-                            <li><a className="dropdown-item" href="/netflix-react">Help</a></li>
+                            <li><a className="dropdown-item" href="/">Your Account</a></li>
+                            <li><a className="dropdown-item" href="/">Help</a></li>
                             <li className="disabled">
                                 <hr className="dropdown-divider" />
                             </li>
